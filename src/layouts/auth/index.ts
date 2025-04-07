@@ -1,3 +1,3 @@
-export * from './layout';
+export * from './main';
 
-export * from './content';
+export * from './layout';

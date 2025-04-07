@@ -1,8 +1,8 @@
 import type { Theme, Components } from '@mui/material/styles';
 
-import { varAlpha } from 'minimal-shared/utils';
-
 import SvgIcon from '@mui/material/SvgIcon';
+
+import { varAlpha } from '../styles';
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ const MuiCard: Components<Theme>['MuiCard'] = {
     root: ({ theme }) => ({
       zIndex: 0,
       position: 'relative',
-      boxShadow: theme.vars.customShadows.card,
+      boxShadow: theme.customShadows.card,
       borderRadius: theme.shape.borderRadius * 2,
     }),
   },
@@ -68,7 +68,9 @@ const MuiOutlinedInput: Components<Theme>['MuiOutlinedInput'] = {
 };
 
 const MuiPaper: Components<Theme>['MuiPaper'] = {
-  defaultProps: { elevation: 0 },
+  defaultProps: {
+    elevation: 0,
+  },
   styleOverrides: {
     root: { backgroundImage: 'none' },
     outlined: ({ theme }) => ({

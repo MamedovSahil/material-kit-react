@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc';
 
 // ----------------------------------------------------------------------
 
-const PORT = 3039;
+const PORT = 5173;
 
 export default defineConfig({
   plugins: [
@@ -13,7 +13,6 @@ export default defineConfig({
     checker({
       typescript: true,
       eslint: {
-        useFlatConfig: true,
         lintCommand: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
         dev: { logLevel: ['error'] },
       },
@@ -26,8 +25,12 @@ export default defineConfig({
   resolve: {
     alias: [
       {
+        find: /^~(.+)/,
+        replacement: path.join(process.cwd(), 'node_modules/$1'),
+      },
+      {
         find: /^src(.+)/,
-        replacement: path.resolve(process.cwd(), 'src/$1'),
+        replacement: path.join(process.cwd(), 'src/$1'),
       },
     ],
   },

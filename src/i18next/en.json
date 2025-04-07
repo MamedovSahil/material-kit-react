@@ -1,0 +1,19 @@
+{
+  "maxCharacters": "Maximum {{max}} characters",
+  "minCharacters": "Minimum {{min}} characters",
+  "dateGreather": "Date must be later than {{date}}",
+  "dateLower": "Date must be earlier than {{date}}",
+  "incorrectEmail": "Email is in incorrect format",
+  "email": "Email",
+  "username": "User Name",
+  "password": "Password",
+  "forgotPassword": "Forgot password?",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "russian": "Russian",
+  "english": "English",
+  "settings": "Settings",
+  "save": "Save",
+  "addAccaunt": "Add Accaunt",
+  "manager": "Manager"
+}

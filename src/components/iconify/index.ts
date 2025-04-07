@@ -2,4 +2,8 @@ export * from './classes';
 
 export * from './iconify';
 
-export * from './register-icons';
+// export * from './flag-icon';
+
+export type * from './types';
+
+//silinecek

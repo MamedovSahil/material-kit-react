@@ -1,7 +1,3 @@
-import { createClasses } from 'src/theme/create-classes';
-
-// ----------------------------------------------------------------------
-
 export const logoClasses = {
-  root: createClasses('logo__root'),
+  root: 'mnl__logo__root',
 };

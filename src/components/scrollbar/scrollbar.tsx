@@ -1,7 +1,7 @@
+import { forwardRef } from 'react';
 import SimpleBar from 'simplebar-react';
-import { mergeClasses } from 'minimal-shared/utils';
 
-import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 
 import { scrollbarClasses } from './classes';
 
@@ -9,52 +9,35 @@ import type { ScrollbarProps } from './types';
 
 // ----------------------------------------------------------------------
 
-export function Scrollbar({
-  sx,
-  ref,
-  children,
-  className,
-  slotProps,
-  fillContent = true,
-  ...other
-}: ScrollbarProps) {
-  return (
-    <ScrollbarRoot
+export const Scrollbar = forwardRef<HTMLDivElement, ScrollbarProps>(
+  ({ slotProps, children, fillContent, sx, ...other }, ref) => (
+    <Box
+      component={SimpleBar}
       scrollableNodeProps={{ ref }}
       clickOnTrack={false}
-      fillContent={fillContent}
-      className={mergeClasses([scrollbarClasses.root, className])}
-      sx={[
-        {
-          '& .simplebar-wrapper': slotProps?.wrapperSx as React.CSSProperties,
-          '& .simplebar-content-wrapper': slotProps?.contentWrapperSx as React.CSSProperties,
-          '& .simplebar-content': slotProps?.contentSx as React.CSSProperties,
-        },
-        ...(Array.isArray(sx) ? sx : [sx]),
-      ]}
+      className={scrollbarClasses.root}
+      sx={{
+        minWidth: 0,
+        minHeight: 0,
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        '& .simplebar-wrapper': slotProps?.wrapper as React.CSSProperties,
+        '& .simplebar-content-wrapper': slotProps?.contentWrapper as React.CSSProperties,
+        '& .simplebar-content': {
+          ...(fillContent && {
+            minHeight: 1,
+            display: 'flex',
+            flex: '1 1 auto',
+            flexDirection: 'column',
+          }),
+          ...slotProps?.content,
+        } as React.CSSProperties,
+        ...sx,
+      }}
       {...other}
     >
       {children}
-    </ScrollbarRoot>
-  );
-}
-
-// ----------------------------------------------------------------------
-
-const ScrollbarRoot = styled(SimpleBar, {
-  shouldForwardProp: (prop: string) => !['fillContent', 'sx'].includes(prop),
-})<Pick<ScrollbarProps, 'fillContent'>>(({ fillContent }) => ({
-  minWidth: 0,
-  minHeight: 0,
-  flexGrow: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  ...(fillContent && {
-    '& .simplebar-content': {
-      display: 'flex',
-      flex: '1 1 auto',
-      minHeight: '100%',
-      flexDirection: 'column',
-    },
-  }),
-}));
+    </Box>
+  )
+);
